@@ -1,0 +1,54 @@
+version: '2'
+services:
+  ontologymanager-app:
+    image: scibite/omp:release
+    environment:
+      - _JAVA_OPTIONS=-Xmx8g
+      - SPRING_PROFILES_ACTIVE=prod,swagger
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://ontologymanager-postgresql:5432/OntologyManager
+      - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+      - JHIPSTER_MAIL_FROM=Centree@centree.scibite.io
+      - JHIPSTER_MAIL_BASE_URL=https://centree.scibite.io
+      - SPRING_MAIL_HOST=email-smtp.eu-west-1.amazonaws.com
+      - SPRING_MAIL_PORT=587
+      - SPRING_MAIL_USERNAME=REPLACE_WITH_USERNAME
+      - SPRING_MAIL_PASSWORD=REPLACE_WITH_PASSWORD
+    volumes:
+      - ontologymanager-app:/var/lib/app/data/
+      - ./data/license/:/var/lib/app/data/license/
+    networks:
+      - omp
+    ports:
+      - 8443:8443
+  ontologymanager-postgresql:
+    image: postgres:11.2
+    volumes:
+      - dbdata:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=OntologyManager
+      - POSTGRES_PASSWORD=
+    ports:
+      - 5432:5432
+    networks:
+      - omp
+  ontologymanager-elasticsearch:
+    image: scibite/oio:6.8.1-clean
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - cluster.name=elasticsearch
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    networks:
+      - omp
+    ports:
+      - 9200:9200
+      - 9300:9300
+volumes:
+  esdata:
+    driver: local
+  dbdata:
+  ontologymanager-app:
+networks:
+  omp:
