@@ -1,4 +1,4 @@
-# CENtree Running Guide
+# CENtree Install and Run Guide
 Use this guide to help you  run a full standalone version of CENtree from the same
 server or computer.
 
@@ -25,7 +25,7 @@ still run CENtree, but you will need to lower the available memory for CENtree o
       - _JAVA_OPTIONS=-Xmx5g
 ```
 
-You will not be able to load the biggest ontologies, but that would be all.
+You will not be able to load the biggest ontologies, but that would be all. Please refer to the CENtree user manual for minimum/recommended server requirements.
 
 You will also need to have a dockerhub user that has access to 
 [CENtree dockerhub repository]. If not, you will not be able to pull the docker containers 
