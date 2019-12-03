@@ -15,7 +15,7 @@ and docker compose ([installing docker compose]) **1.24.1**. But is very likely 
 also with older/newer versions.
 
 You also need a valid CENTree license. Please replace the example [license](docker/data/license/centree_licence.xml)
-with the one we provide you. If not, the server will refuse to start.
+with the one we provide you into that same location. If not, the server will refuse to start.
 
 Your server requires a minimum of 16GB of ram. If you only have 8GB at your disposal, you may
 still run CENtree, but you will need to lower the available memory for CENtree on the 
