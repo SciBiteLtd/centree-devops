@@ -19,7 +19,7 @@ with the one we provide you into that same location. If not, the server will ref
 
 Your server requires a minimum of 16GB of ram. If you only have 8GB at your disposal, you may
 still run CENtree, but you will need to lower the available memory for CENtree on the 
-[app.yml](docker/app.yml) file
+[Application configuration] file
 
 ```yaml
       - _JAVA_OPTIONS=-Xmx5g
@@ -66,7 +66,25 @@ And you should get a similar output as this at the end:
 If you can see this output, you should be able now to access your server at https://localhost:8443/ 
 if you are running the service locally.
 
+## (Optional) Mail configuration
+If you want to make use of the email outgoing service, you will need to provide the following necessary properties editing
+the [Application configuration] file:
+
+```
+      - JHIPSTER_MAIL_FROM=Centree@centree.scibite.io 
+      - JHIPSTER_MAIL_BASE_URL=https://centree.scibite.io
+      - SPRING_MAIL_HOST=email-smtp.eu-west-1.amazonaws.com
+      - SPRING_MAIL_PORT=587
+      - SPRING_MAIL_USERNAME=REPLACE_WITH_USERNAME
+      - SPRING_MAIL_PASSWORD=REPLACE_WITH_PASSWORD
+      
+```
+In this example, amazon mail service is used, but you can use whatever smtp server you prefer.
+Make sure you change the base url to match a public address that a person receiving an email is able to access your Centree
+instance, so he can be able to open any links that gets into his email (Ex. password resets)
+
 
 [installing docker]: https://docs.docker.com/install/
 [installing docker compose]: https://docs.docker.com/compose/install/
 [CENtree dockerhub repository]: https://hub.docker.com/repository/docker/scibite/omp
+[Application configuration]: docker/app.yml
