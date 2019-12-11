@@ -7,7 +7,7 @@ server or computer.
 * Docker engine
 * Docker compose
 * Valid Scibite CENtree license
-* Dockerhub user with access to [CENtree dockerhub repository]
+* Dockerhub user with access to [CENtree dockerhub repository] (access will be granted by SciBite on valid licence)
 
 You will need docker and docker-compose installed in your server/computer. This version has being
 tested with docker ([installing docker]) **19.03.4-ce** 
