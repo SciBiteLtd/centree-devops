@@ -41,9 +41,9 @@ cd docker
 ./start-centree.sh
 ```
 
-Depending on what is your environment, and how you install docker, you may need to run as **sudo**.
+Depending on your environment and how you install docker, you may need to run as **sudo**.
 
-Anyway, to check if everything went well, just run:
+To check if everything went well, run:
 
 ```
 ./show-logs.sh
