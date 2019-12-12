@@ -39,7 +39,7 @@ Ensure you are logged into Docker:
 docker login
 ```
 
-If you have not saved credentials it will prompt for your username and password. use the same account that has access to the CENtree Dockerhub which you have previously sent to SciBite.
+If you have not previously saved credentials it will prompt for your username and password. Use the same account that has access to the CENtree Dockerhub which you have previously sent to SciBite.
 
 If both requirements are satisfied (docker compose and access to 
 [CENtree dockerhub repository]) you just need to run the following command: 
