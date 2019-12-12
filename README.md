@@ -49,7 +49,7 @@ cd docker
 ./start-centree.sh
 ```
 
-Depending on your environment and how you install docker, you may need to run as **sudo**.
+Depending on your environment and how you install docker, you may need to run as **sudo**. The script will first pull the latest image (no action is taken if you already have the latest image downloaded), then initiate the platform to start. If you want to opt out of the latest image pull you can specify exactly which image you wish to use in the app.yml file
 
 To check if everything went well, run:
 
