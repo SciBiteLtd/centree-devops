@@ -31,7 +31,15 @@ You will also need to have a dockerhub user that has access to
 [CENtree dockerhub repository]. If not, you will not be able to pull the docker containers 
 images needed to run CENtree.
 
-## Starting CENtree
+## Installing and Starting CENtree
+
+Ensure you are logged into Docker:
+
+```
+docker login
+```
+
+If you have not saved credentials it will prompt for your username and password. use the same account that has access to the CENtree Dockerhub which you have previously sent to SciBite.
 
 If both requirements are satisfied (docker compose and access to 
 [CENtree dockerhub repository]) you just need to run the following command: 
