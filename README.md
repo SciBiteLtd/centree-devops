@@ -93,6 +93,27 @@ In this example, amazon mail service is used, but you can use whatever smtp serv
 Make sure you change the base url to match a public address that a person receiving an email is able to access your Centree
 instance, so he can be able to open any links that gets into his email (Ex. password resets)
 
+## (Optional) SSL certificate override 
+You can override the default self signed certificate with your own, please uncomment the ssl properties editing
+the [Application configuration] file and it should look something like this:
+
+```
+      # Uncumment the next lines if you want to override the self signed certificate with your own
+      - SERVER_SSL_KEY_STORE=/var/lib/app/data/ssl/ontologymanager.p12
+      - SERVER_SSL_KEY_STORE_TYPE=PKCS12
+      - SERVER_SSL_KEY_STORE_ALIAS=ontologymanager
+      - SERVER_SSL_KEY_STORE_PASSWORD=changeme
+    volumes:
+      - ontologymanager-app:/var/lib/app/data/
+      - ./data/license/:/var/lib/app/data/license/
+      # You will need to provide a volume that stores your certificate if you want to override the default
+      - ./data/ssl/:/var/lib/app/data/ssl/
+      
+```
+
+Here, you are overriding the ssl certificate with [ontologymanager.p12](docker/data/ssl/ontologymanager.p12)
+Modify the properties to meet your demands.
+
 
 [installing docker]: https://docs.docker.com/install/
 [installing docker compose]: https://docs.docker.com/compose/install/
