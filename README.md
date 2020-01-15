@@ -106,12 +106,12 @@ the [Application configuration] file and it should look something like this:
     volumes:
       - ontologymanager-app:/var/lib/app/data/
       - ./data/license/:/var/lib/app/data/license/
-      # You will need to provide a volume that stores your certificate if you want to override the default
+      # You will need to provide a volume that stores your certificate if ssl is override
       - ./data/ssl/:/var/lib/app/data/ssl/
       
 ```
 
-Here, you are overriding the ssl certificate with [ontologymanager.p12](docker/data/ssl/ontologymanager.p12)
+Here, you are overriding the ssl certificate with [ontologymanager.p12](docker/data/ssl/ontologymanager.p12).
 Modify the properties to meet your demands.
 
 
