@@ -106,7 +106,7 @@ the [Application configuration] file and it should look something like this:
     volumes:
       - ontologymanager-app:/var/lib/app/data/
       - ./data/license/:/var/lib/app/data/license/
-      # You will need to provide a volume that stores your certificate if ssl is override
+      # You will need to provide a volume that stores your certificate if ssl is overriden
       - ./data/ssl/:/var/lib/app/data/ssl/
       
 ```
