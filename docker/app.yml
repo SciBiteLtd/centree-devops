@@ -14,11 +14,18 @@ services:
       - SPRING_MAIL_PORT=587
       - SPRING_MAIL_USERNAME=REPLACE_WITH_USERNAME
       - SPRING_MAIL_PASSWORD=REPLACE_WITH_PASSWORD
+      - APPLICATION_BASE_URL=https://localhost:8443
       # Uncumment the next lines if you want to override the self signed certificate with your own
       #- SERVER_SSL_KEY_STORE=/var/lib/app/data/ssl/ontologymanager.p12
       #- SERVER_SSL_KEY_STORE_TYPE=PKCS12
       #- SERVER_SSL_KEY_STORE_ALIAS=ontologymanager
       #- SERVER_SSL_KEY_STORE_PASSWORD=changeme
+      # Uncomment this part if you want to configure OPEN ID login support
+      # - APPLICATION_OAUTH_CLIENT_ID=CLIENT_ID
+      # - APPLICATION_OAUTH_CLIENT_SECRET=CLIENT_SECRET
+      # - APPLICATION_OAUTH_ACCESS_TOKEN_URL=https://<OAUTH_SERVER_URL>/oauth2/token
+      # - APPLICATION_OAUTH_AUTHORIZE_BASE_URL=https://<OAUTH_SERVER_URL>/oauth2/authorize
+      # - APPLICATION_OAUTH_EMAIL_CLAIM=email
     volumes:
       - ontologymanager-app:/var/lib/app/data/
       - ./data/license/:/var/lib/app/data/license/
@@ -28,6 +35,7 @@ services:
       - omp
     ports:
       - 8443:8443
+    restart: always
   ontologymanager-postgresql:
     image: postgres:11.2
     volumes:
