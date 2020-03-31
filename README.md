@@ -101,7 +101,7 @@ the [Application configuration] file and it should look something like this:
       # Uncumment the next lines if you want to override the self signed certificate with your own
       - SERVER_SSL_KEY_STORE=/var/lib/app/data/ssl/ontologymanager.p12
       - SERVER_SSL_KEY_STORE_TYPE=PKCS12
-      - SERVER_SSL_KEY_STORE_ALIAS=ontologymanager
+      - SERVER_SSL_KEY_ALIAS=ontologymanager
       - SERVER_SSL_KEY_STORE_PASSWORD=changeme
     volumes:
       - ontologymanager-app:/var/lib/app/data/
