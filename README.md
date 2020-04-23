@@ -51,7 +51,7 @@ cd docker
 ./start-centree.sh
 ```
 
-Depending on your environment and how you install docker, you may need to run as **sudo**. The script will first pull the latest image (no action is taken if you already have the latest image downloaded), then initiate the platform to start. 
+Depending on your environment and how you install docker, you may need to run as **sudo**. The script will first pull the **latest image** (no action is taken if you already have the latest release image downloaded), then initiate the platform to start. If you want to pull a specific verson of CENtree and not the latest release please use a named version - see the **[updating CENtree wiki page](https://github.com/SciBiteLtd/centree-devops/wiki/Updating-CENtree)** 
 
 To check if everything went well, run:
 
