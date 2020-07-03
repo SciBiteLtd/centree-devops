@@ -7,6 +7,7 @@ metadata:
 spec:
   accessModes:
   - ReadWriteOnce
+  storageClassName: managed-premium
   resources:
     requests:
       storage: 5Gi
@@ -34,16 +35,15 @@ spec:
           - name: POSTGRES_PASSWORD
           - name: POSTGRES_USER
             value: OntologyManager
-          - name: PGDATA
-            value: /var/lib/postgresql/data/db-files/
         resources:
           requests:
             memory: 1024Mi
           limits:
             memory: 1512Mi
         volumeMounts:
-        - mountPath: /var/lib/postgresql/data/
+        - mountPath: /var/lib/postgresql/
           name: dbdata
+          subPath: data
       volumes:
       - name: dbdata
         persistentVolumeClaim:
