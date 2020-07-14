@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dbdata-claim
+  labels:
+    app: ontologymanager-postgresql
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ontologymanager-postgresql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ontologymanager-postgresql
+  template:
+    metadata:
+      labels:
+        app: ontologymanager-postgresql
+    spec:
+      containers:
+      - name: ontologymanager-postgresql
+        image: postgres:11.2
+        ports:
+          - containerPort: 5432
+        env:
+          - name: POSTGRES_PASSWORD
+          - name: POSTGRES_USER
+            value: OntologyManager
+        resources:
+          requests:
+            memory: 1024Mi
+          limits:
+            memory: 1512Mi
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/
+          name: dbdata
+          subPath: data
+      volumes:
+      - name: dbdata
+        persistentVolumeClaim:
+          claimName: dbdata-claim
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: ontologymanager-postgresql
+  labels:
+    app: ontologymanager-postgresql
+spec:
+  ports:
+  - port: 5432
+  selector:
+    app: ontologymanager-postgresql
+---

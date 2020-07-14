@@ -1,0 +1,87 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ontologymanager-app
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ontologymanager-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ontologymanager-app
+  template:
+    metadata:
+      labels:
+        app: ontologymanager-app
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - env:
+        - name: APPLICATION_BASE_URL
+          value: https://localhost:8443
+        - name: JHIPSTER_MAIL_BASE_URL
+          value: https://centree.scibite.io
+        - name: JHIPSTER_MAIL_FROM
+          value: Centree@centree.scibite.io
+        - name: JHIPSTER_SLEEP
+          value: "10"
+        - name: MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED
+          value: "true"
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:postgresql://ontologymanager-postgresql:5432/OntologyManager
+        - name: SPRING_MAIL_HOST
+          value: email-smtp.eu-west-1.amazonaws.com
+        - name: SPRING_MAIL_PASSWORD
+          value: REPLACE_WITH_PASSWORD
+        - name: SPRING_MAIL_PORT
+          value: "587"
+        - name: SPRING_MAIL_USERNAME
+          value: REPLACE_WITH_USERNAME
+        - name: SPRING_PROFILES_ACTIVE
+          value: prod,swagger
+        - name: _JAVA_OPTIONS
+          value: -Xmx3g
+        name: ontologymanager-app
+        image: scibite/omp:release
+        ports:
+        - containerPort: 8443
+        resources:
+          requests:
+            memory: 3072Mi
+          limits:
+            memory: 3072Mi
+        volumeMounts:
+        - mountPath: /var/lib/app/data/
+          name: ontologymanager-app
+        - mountPath: /var/lib/app/data/license/
+          name: ontologymanager-app-license
+      volumes:
+      - name: ontologymanager-app
+        persistentVolumeClaim:
+          claimName: ontologymanager-app
+      - name: ontologymanager-app-license
+        configMap:
+          name: centree-license
+      imagePullSecrets:
+        - name: regcred
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: ontologymanager-app
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8443
+  selector:
+    app: ontologymanager-app
