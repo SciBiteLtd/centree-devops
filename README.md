@@ -1,8 +1,7 @@
 # CENtree Install and Run Guide
-Use this guide to help you  run a full standalone version of CENtree from the same
-server or computer.
+Use this guide to help you run a full standalone version of CENtree from the same server or computer.
 
-For more advancing topics, including **updating CENtree**, please check the [wiki](https://github.com/SciBiteLtd/centree-devops/wiki).
+For other advanced topics, including **updating CENtree**, please check the [wiki](https://github.com/SciBiteLtd/centree-devops/wiki).
 
 ## Minimum Requirements
 
