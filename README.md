@@ -15,7 +15,7 @@ tested with docker ([installing docker]) **19.03.4-ce**
 and docker compose ([installing docker compose]) **1.24.1**. But is very likely it will work 
 also with older/newer versions.
 
-You also need a valid CENTree license. Please replace the example [license](docker/data/license/centree_licence.xml)
+You also need a valid CENTree license. Please replace the example [license](docker/data/license/centree_licence.xml.sample)
 with the one we provide you into that same location. If not, the server will refuse to start.
 
 Your server requires a minimum of 16GB of ram. If you only have 8GB at your disposal, you may
