@@ -34,6 +34,12 @@ images needed to run CENtree.
 
 ## Installing and Starting CENtree
 
+Clone or download the docker file (above) which contains the start and stop scripts, the yml config and license folder:
+
+https://github.com/SciBiteLtd/centree-devops/tree/master/docker
+
+
+
 Ensure you are logged into Docker:
 
 ```
