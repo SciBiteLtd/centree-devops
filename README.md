@@ -99,6 +99,13 @@ Make sure you change the base url to match a public address that a person receiv
 instance, so he can be able to open any links that gets into his email (Ex. password resets)
 
 ## (Optional) SSL/TLS configuration
+
+By default, CENtree comes with a self-signed certificate, which can lead to browser warnings and a "Not secure" warning in the URL bar. To remove this, an SSL certificate should be generated, and then CENtree should be configured to use it.
+
+You will need to create a suitable SSL certificate, or request one from whoever is responsible for such things in your organisation. The certificate shoud be in PKCS12 format (the extension will be `.p12` or `.pfx`) 
+
+Once you have the certificate put it in `centree-devops/docker/data/ssl` and take note of the name (here `cert.p12`), then edit the [Application Configuration] file as follows; note paths are relative to the directory in which the [Application configuration] file is stored:
+
 SSS/TLS is enabled by default. A generated self signed certificate is included on centree by default. You can leave it as it is, override it with a certificate of your own or disable ssl/tls if you so desire it.
 
 To disable ssl/tls, change the server profile to **no-tls**:
@@ -126,8 +133,8 @@ You can override the default self signed certificate with your own, please uncom
 the [Application configuration] file and it should look something like this:
 
 ```
-      # Uncumment the next lines if you want to override the self signed certificate with your own
-      - SERVER_SSL_KEY_STORE=/var/lib/app/data/ssl/ontologymanager.p12
+      # Uncomment the next lines if you want to override the self signed certificate with your own
+      - SERVER_SSL_KEY_STORE=/var/lib/app/data/ssl/cert.p12
       - SERVER_SSL_KEY_STORE_TYPE=PKCS12
       - SERVER_SSL_KEY_ALIAS=ontologymanager
       - SERVER_SSL_KEY_STORE_PASSWORD=changeme
@@ -139,8 +146,15 @@ the [Application configuration] file and it should look something like this:
       
 ```
 
-Here, you are overriding the ssl certificate with [ontologymanager.p12](docker/data/ssl/ontologymanager.p12).
-Modify the properties to meet your demands.
+The `SERVER_SSL_KEY_ALIAS` will need to be set to the alias or "friendly name" of the certificate. If you don't know this intially it can be obtained using one of the two following commands; note that `keytool` is part of the JDK:
+
+```
+keytool -list -keystore data/ssl/cert.p12 
+
+or 
+
+openssl pkcs12 -info -in cert.p12
+```
 
 
 [installing docker]: https://docs.docker.com/install/
