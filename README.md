@@ -98,13 +98,39 @@ In this example, amazon mail service is used, but you can use whatever smtp serv
 Make sure you change the base url to match a public address that a person receiving an email is able to access your Centree
 instance, so he can be able to open any links that gets into his email (Ex. password resets)
 
-## (Optional) SSL certificate override 
+## (Optional) SSL/TLS configuration
 
 By default, CENtree comes with a self-signed certificate, which can lead to browser warnings and a "Not secure" warning in the URL bar. To remove this, an SSL certificate should be generated, and then CENtree should be configured to use it.
 
 You will need to create a suitable SSL certificate, or request one from whoever is responsible for such things in your organisation. The certificate shoud be in PKCS12 format (the extension will be `.p12` or `.pfx`) 
 
 Once you have the certificate put it in `centree-devops/docker/data/ssl` and take note of the name (here `cert.p12`), then edit the [Application Configuration] file as follows; note paths are relative to the directory in which the [Application configuration] file is stored:
+
+SSS/TLS is enabled by default. A generated self signed certificate is included on centree by default. You can leave it as it is, override it with a certificate of your own or disable ssl/tls if you so desire it.
+
+To disable ssl/tls, change the server profile to **no-tls**:
+
+```
+    - SPRING_PROFILES_ACTIVE=no-tls,swagger
+```
+
+Once the server has started, you should see something similar to this on the logs:
+
+```
+11:01:58.046+0000 INFO  [main] OntologyManagerApp: Started OntologyManagerApp in 12.906 seconds (JVM running for 13.448)
+11:01:58.051+0000 INFO  [main] OntologyManagerApp: 
+----------------------------------------------------------
+        Application 'OntologyManager' is running! Access URLs:
+        Local:          http://localhost:8443/
+        External:       http://172.25.0.3:8443/
+        Profile(s):     [no-tls,swagger]
+----------------------------------------------------------
+
+```
+As you can see, the port is now http instead of https.
+
+You can override the default self signed certificate with your own, please uncomment the ssl properties editing
+the [Application configuration] file and it should look something like this:
 
 ```
       # Uncomment the next lines if you want to override the self signed certificate with your own
