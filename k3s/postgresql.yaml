@@ -40,9 +40,8 @@ spec:
           limits:
             memory: 1512Mi
         volumeMounts:
-        - mountPath: /var/lib/postgresql/
+        - mountPath: /var/lib/postgresql/data/
           name: dbdata
-          subPath: data
       volumes:
       - name: dbdata
         persistentVolumeClaim:

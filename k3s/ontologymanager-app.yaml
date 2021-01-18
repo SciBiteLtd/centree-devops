@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: ontologymanager-app
+  name: ontologymanager-claim
 spec:
   accessModes:
   - ReadWriteOnce
@@ -23,8 +23,6 @@ spec:
       labels:
         app: ontologymanager-app
     spec:
-      nodeSelector:
-        "beta.kubernetes.io/os": linux
       containers:
       - env:
         - name: APPLICATION_BASE_URL
@@ -62,14 +60,14 @@ spec:
             memory: 3072Mi
         volumeMounts:
         - mountPath: /var/lib/app/data/
-          name: ontologymanager-app
+          name: omp-data
         - mountPath: /var/lib/app/data/license/
-          name: ontologymanager-app-license
+          name: omp-license
       volumes:
-      - name: ontologymanager-app
+      - name: omp-data
         persistentVolumeClaim:
-          claimName: ontologymanager-app
-      - name: ontologymanager-app-license
+          claimName: ontologymanager-claim
+      - name: omp-license
         configMap:
           name: centree-license
       imagePullSecrets:
