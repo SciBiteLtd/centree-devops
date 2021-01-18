@@ -34,6 +34,9 @@ spec:
         image: scibite/oio:6.8.1-clean
         ports:
           - containerPort: 9300
+            name: http
+          - containerPort: 9200
+            name: binary
         env:
           - name: cluster.name
             value: elasticsearch
@@ -63,5 +66,8 @@ metadata:
 spec:
   ports:
   - port: 9300
+    name: http
+  - port: 9200
+    name: binary
   selector:
     app: ontologymanager-elasticsearch
