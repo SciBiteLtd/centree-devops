@@ -106,7 +106,7 @@ If you are running multiple instance of CENtree you may wish to ensure the Java 
  	- JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET=SCIbitelihuOouyljb23eljbljwbhf98hiluLJBHoIUH9RzoGog8YG82630J04ldIjeH
 
 ```
-The server will require restarting to use this specified secret if it has already been started. One (possibly desired) consequence of this to be aware of: if you change secrets at any point in a server that has been running and has active users, the existing JWTs generated will no longer be valid and will require regenerating by the users concerned. 
+The server will require restarting to use this specified secret if it has already been started. One (possibly desired) consequence of this to be aware of: if you change secrets at any point in a server that has been running and has active users, the existing JWTs generated will no longer be valid and will require regenerating by the users concerned. For more details on specifcy a key (including length) https://www.jhipster.tech/security/#jwt
 
 
 ## (Optional) SSL/TLS configuration
