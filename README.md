@@ -169,7 +169,7 @@ openssl pkcs12 -info -in cert.p12
 
 ## (Optional) File upload limits configuration
 
-By default, CENtree specifies file upload requests at 510MB. To overide this to a higher (or lower) value the following can be added to the  [Application configuration] file:
+By default, CENtree specifies file upload requests at 510MB. To override this to a higher (or lower) value the following can be added to the  [Application configuration] file:
 
 ```
       - SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE=800MB
