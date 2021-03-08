@@ -167,6 +167,16 @@ or
 openssl pkcs12 -info -in cert.p12
 ```
 
+## (Optional) File upload limits configuration
+
+By default, CENtree specifies file upload requests at 510MB. To overide this to a higher (or lower) value the following can be added to the  [Application configuration] file:
+
+```
+      - SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE=800MB
+      - SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE=1024MB
+```
+
+The max file size restricts the file size allowed to be sent to CENtree when uploading an ontology file. The request is the overall request size (including any attached files). If the file size is larger than either of these limits it will be rejected. 
 
 [installing docker]: https://docs.docker.com/install/
 [installing docker compose]: https://docs.docker.com/compose/install/
