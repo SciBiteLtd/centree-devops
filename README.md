@@ -98,14 +98,20 @@ In this example, amazon mail service is used, but you can use whatever smtp serv
 Make sure you change the base url to match a public address that a person receiving an email is able to access your Centree
 instance, so he can be able to open any links that gets into his email (Ex. password resets)
 
-## (Optional) Specifying a secret to generate web tokens
+## (Mandatory) Specifying a secret to generate web tokens
 
-If you are running multiple instance of CENtree you may wish to ensure the Java Web Tokens (JWT) are not able to be share across platforms. To prevent this, you will need to specify a (different) secret on each server which is use to generate and decode the JWT. To enable this, provide the followingproperty to the [Application configuration] file:
+You have to provide a secret to that will be used to generate and validate the JWT used for authentication and authorization of users. Use the same secret if you want users to be able to authenticate against multiple instances or a different one if not. Provide the following property to the [Application configuration] file:
 
 ```
  	- JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET=SCIbitelihuOouyljb23eljbljwbhf98hiluLJBHoIUH9RzoGog8YG82630J04ldIjeH
 
 ```
+You can generate a random secrect with the command:
+
+```
+    openssl rand -base64 64
+```
+
 The server will require restarting to use this specified secret if it has already been started. One (possibly desired) consequence of this to be aware of: if you change secrets at any point in a server that has been running and has active users, the existing JWTs generated will no longer be valid and will require regenerating by the users concerned. For more details on specifying a key (including length) see: https://www.jhipster.tech/security/#jwt
 
 
