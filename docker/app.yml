@@ -31,7 +31,9 @@ services:
       - ontologymanager-app:/var/lib/app/data/
       - ./data/license/:/var/lib/app/data/license/
       # You will need to provide a volume that stores your certificate if ssl is overriden
-      #- ./data/ssl/:/var/lib/app/data/ssl/
+      # - ./data/ssl/:/var/lib/app/data/ssl/
+      # You can use override properties providing an application.yml file
+      # - ./data/config/:/config/
     networks:
       - omp
     ports:
@@ -49,7 +51,7 @@ services:
     networks:
       - omp
   ontologymanager-elasticsearch:
-    image: scibite/oio:6.8.1-clean
+    image: scibite/oio:7.10.1-clean
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false

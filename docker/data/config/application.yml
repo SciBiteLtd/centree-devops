@@ -1,0 +1,60 @@
+# ===================================================================
+# Spring Boot configuration for the "prod" profile.
+#
+# This configuration overrides the application.yml file.
+#
+# More information on profiles: https://www.jhipster.tech/profiles/
+# More information on configuration properties: https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+jhipster:
+  security:
+    authentication:
+      jwt:
+        # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
+        base64-secret: YWRmZHNmZXdmbm53ZW5rZm53ZWtmbndkbnN0YXRlYXNmYXNkZmFzZGtmbmFzZGxmbmthc2RsZmtubGFzZGZhc2RoZGZo
+
+
+# ===================================================================
+# Application specific properties
+# Add your own application properties here, see the ApplicationProperties class
+# to have type-safe configuration, like in the JHipsterProperties above
+#
+# More documentation is available at:
+# https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+application:
+  base-url: https://localhost:8443
+  oauth:
+#    access-token-url: https://login.microsoftonline.com/5dbca8d9-5dc8-4405-acba-090e637e1490/oauth2/v2.0/token
+#    authorize-base-url: https://login.microsoftonline.com/5dbca8d9-5dc8-4405-acba-090e637e1490/oauth2/v2.0/authorize
+#    client-id: 67cd45e2-0735-43e5-ab07-80c9599543ce
+#    client-secret: <SECRET>
+#    custom-name: platSite
+#    custom-value: SB/sand
+    email-claim: email
+    user-id: preferred_username
+    verify-token: false
+    scope: openid profile email
+    validation:
+      - claim: email
+        regex: ^.*@elsevier.com$
+      #  
+      #- claim: <CLAIM>
+      #  regex: <REGEX>
+
+#  termite:
+#    url: <TERTMIE_URL>
+#    user: <TERMITE_USER>
+#    token: <TERMITE_TOKEN>
+#  file-storage: local
+#  s3-remote-storage:
+#    s3service-region: eu-west-2
+#    s3service-bucket-name: <BUCKET_NAME>
+#    s3service-access-key: <ACCESS_KEY>
+#    s3service-secret-access-key: <YOUR_SECRET>

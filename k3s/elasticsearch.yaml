@@ -31,7 +31,7 @@ spec:
         fsGroup: 1000 
       containers:
       - name: ontologymanager-elasticsearch
-        image: scibite/oio:6.8.1-clean
+        image: scibite/oio:7.10.1-clean
         ports:
           - containerPort: 9300
             name: http

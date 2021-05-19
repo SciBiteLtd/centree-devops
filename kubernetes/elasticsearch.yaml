@@ -32,9 +32,9 @@ spec:
         fsGroup: 1000 
       containers:
       - name: ontologymanager-elasticsearch
-        image: scibite/oio:6.8.1-clean
+        image: scibite/oio:7.10.1-clean
         ports:
-          - containerPort: 9300
+          - containerPort: 9200
         env:
           - name: cluster.name
             value: elasticsearch
@@ -63,6 +63,6 @@ metadata:
     app: ontologymanager-elasticsearch
 spec:
   ports:
-  - port: 9300
+  - port: 9200
   selector:
     app: ontologymanager-elasticsearch
