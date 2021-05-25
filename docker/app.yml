@@ -48,6 +48,7 @@ services:
       - POSTGRES_PASSWORD=
     ports:
       - 5432:5432
+    restart: always      
     networks:
       - omp
   ontologymanager-elasticsearch:
@@ -63,6 +64,7 @@ services:
     ports:
       - 9200:9200
       - 9300:9300
+    restart: always
 volumes:
   esdata:
     driver: local
